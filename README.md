@@ -1,5 +1,7 @@
 # Walkthrough document
 
+I express gratitude towards PRIYA.V mam for acting as mentor for our project.
+
 This document explains the different attacks that can be done on this setup. Use `?debug=true` to see the actual query being executed.
 
 ## Registration
